@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.2" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" href="../static/images/MTECH.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="assents/img/Incone.png" type="image/png">
+  <link rel="stylesheet" href="../static/style.css">
+  <title>Ponto M-Tech</title>
+</head>
+
+<body>
+
+  <div class="logo">
+    <!-- Link para a página admin -->
+    <a href="{{ url_for('admin') }}" class="admin-button" target="_blank">
+      
+      <img src="../static/images/Logo.png" alt="logo do m-tech">
+    </a>
+    <!--<a href="./qr_code_camera.html">Abrir Leitor de QR Code</a>-->
+  </div>
+  <!--Parte de cadastro de aluno-->
+  <div class="container" id="container">
+    <div class="cadastro">
+      <form method="POST">
+        <h1>Cadastro de Aluno</h1>
+
+        <div class="input-group">
+          <label for="nome">Nome completo</label>
+          <div class="input-container">
+            <i class="fa-solid fa-user input-icon"></i>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <div class="input-container">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+          </div>
+        </div>
+
+        <button type="submit" name="cadastrar" id="btnCadastrarAluno">Cadastrar</button>
+
+      </form>
+
+    </div>
+
+    <!--Parte de bater ponto-->
+    <div class="ponto">
+      <form method="POST">
+        <h1>Bater ponto</h1>
+
+        <div class="input-group">
+          <label for="codigo">Código</label>
+          <div class="input-container">
+            <i class="fa-solid fa-user input-icon"></i>
+            <input type="text" name="codigo" id="codigo" placeholder="Digite seu código" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="senha_bater">Senha</label>
+          <div class="input-container">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" name="senha_bater" id="senha_bater" placeholder="Digite sua senha" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="acao">Bater Ponto</label>
+          <div class="input-container">
+            <select name="acao" id="acao" required>
+              <option value="" disabled selected>Selecione o ponto</option>
+              <option value="entrada">Entrada</option>
+              <option value="saida">Saída</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" name="bater_ponto" id="bater_ponto">Registra Ponto</button>
+      </form>
+    </div>
+    <div class="overlayContainer">
+      <div class="overlay">
+        <div class="overlayEsquerdo">
+          <h2>Seja bem vindo</h2>
+          <p>Apos realizar o cadastro não esqueça de bater seu ponto!</p>
+          <button id="btnPonto">Bater ponto</button>
+        </div>
+        <div class="overleyDireito">
+          <h2>Olá, Aluno novo?</h2>
+          <p>Faça seu cadastro e aproveite a aula</p>
+          <button id="btnCadastro">Cadastre-se</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <img src="../static/images/footer.png" alt="footer do projeto">
+      <p>&copy; 2023 M-Tech. Todos os direitos reservados.</p>
+    </div>
+
+    <div class="footer">
+      <img src="../static/images/footer.png" alt="footer do projeto">
+    </div>
+
+    <script src="../static/script.js"></script>
+
+
+
+    {% if mensagem %}
+    <script>
+      alert("{{ mensagem }}");
+    </script>
+    {% endif %}
+</body>
+
+</html>

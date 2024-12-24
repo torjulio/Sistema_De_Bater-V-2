@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de QR Code</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #reader {
+            width: 300px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Leitura de QR Code</h1>
+
+    <div id="reader"></div>
+    <p id="result">Nenhum QR Code lido ainda.</p>
+
+    <form id="form-qrcode" action="/processar_qrcode" method="POST" style="display: none;">
+        <input type="hidden" id="qrcode-data" name="qrcode_data">
+    </form>
+
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // Exibir o QR Code lido
+            document.getElementById('result').innerText = `QR Code lido: ${decodedText}`;
+
+            // Enviar o QR Code lido para o backend
+            document.getElementById('qrcode-data').value = decodedText;
+            document.getElementById('form-qrcode').submit();
+        }
+
+        function onScanError(errorMessage) {
+            // Tratamento de erros, se necessário
+            console.warn(`Erro na leitura: ${errorMessage}`);
+        }
+
+        // Inicializar o leitor de QR Code
+        const html5QrCode = new Html5Qrcode("reader");
+        html5QrCode.start(
+            { facingMode: "environment" },  // Usar a câmera traseira
+            {
+                fps: 10,                     // Frames por segundo
+                qrbox: { width: 250, height: 250 } // Área de leitura do QR Code
+            },
+            onScanSuccess,
+            onScanError
+        ).catch(err => {
+            document.getElementById('result').innerText = "Erro: Não foi possível acessar a câmera.";
+            console.error("Erro ao acessar a câmera:", err);
+        });
+    </script>
+</body>
+
+</html>

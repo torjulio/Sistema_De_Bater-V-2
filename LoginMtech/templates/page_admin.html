@@ -1,0 +1,303 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sistema de Gestão Escolar Zehan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="../static/images/MTECH.png" type="image/x-icon">
+    <style>
+        footer {
+            background-color: #2563eb;
+            color: white;
+            padding: -0.05rem 0.50rem;
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: auto;
+            line-height: 1.4;
+            bottom: 0;
+        }
+
+        body {
+            zoom: 93%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            zoom: 93%;
+            table-layout: fixed; /* Adicionado para fixar o layout da tabela */
+
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd49;
+            padding: 8px;
+            overflow: hidden; /* Adicionado para ocultar o conteúdo que excede o tamanho da célula */
+            text-overflow: ellipsis; /* Adicionado para adicionar reticências ao conteúdo que excede o tamanho da célula */
+            white-space: nowrap; 
+        }
+
+        th {
+            background-color: #534f4f;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #3d3a3a;
+        }
+
+        tr:hover {
+            background-color: #dddddd3f;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 8;
+        let alunos = [];
+
+        function listarAlunos() {
+            fetch('/listar_nomes')
+                .then(response => response.json())
+                .then(data => {
+                    alunos = data;
+                    displayPage(currentPage);
+                });
+        }
+
+        function displayPage(page) {
+            const tabela = document.getElementById('tabela-nomes');
+            tabela.innerHTML = ''; // Limpar tabela
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageAlunos = alunos.slice(start, end);
+
+            pageAlunos.forEach(aluno => {
+                const [nome, matricula] = aluno;
+                const row = tabela.insertRow();
+                const cellNome = row.insertCell(0);
+                const cellMatricula = row.insertCell(1);
+                const cellTurma = row.insertCell(2);
+                const cellUnidade = row.insertCell(3);
+                const cellPresencas = row.insertCell(4);
+                const cellFaltas = row.insertCell(5);
+
+                cellNome.textContent = nome;
+                cellMatricula.textContent = matricula;
+                cellTurma.textContent = ''; // Adicione o valor da turma se disponível
+                cellUnidade.textContent = 'Gama-DF';
+                cellPresencas.textContent = ''; // Adicione o valor das presenças se disponível
+                cellFaltas.textContent = ''; // Adicione o valor das faltas se disponível
+            });
+
+            document.getElementById('page-number').textContent = `Página ${page}`;
+        }
+
+        function nextPage() {
+            if (currentPage * rowsPerPage < alunos.length) {
+                currentPage++;
+                displayPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPage(currentPage);
+            }
+        }
+    </script>
+
+</head>
+
+<body class="bg-white dark:bg-gray-700 dark:text-white bg-opacity-80 backdrop-blur-md">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gradient-to-b from-purple-600 to-blue-500 text-white min-h-screen">
+            <div class="flex items-center justify-center py-6">
+                <img alt="" height="100" src="../static/images/MTECH.png" width="100" />
+            </div>
+            <nav class="px-6">
+                <ul>
+                    <li class="py-2">
+                        <a class="flex items-center hover:text-gray-300" href="#">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Lista de Alunos
+                        </a>
+                    </li>
+                    <li class="py-2">
+                        <a class="flex items-center hover:text-gray-300" href="#">
+                            <i class="fas fa-user mr-2"></i>
+                            Controle de Usuarios
+                        </a>
+                    </li>
+                    <li class="py-2">
+                        <a class="flex items-center hover:text-gray-300" href="#">
+                            <i class="fas fa-book mr-2"></i>
+                            Calendário Pedagógico
+                        </a>
+                    </li>
+                    <li class="py-2">
+                        <a class="flex items-center hover:text-gray-300" href="#" id="toggleRelatorios">
+                            <i class="fas fa-file-alt mr-2"></i>
+                            Relatórios
+                        </a>
+                    </li>
+                    <ul id="relatorioItems" class="pl-4 hidden">
+                        <li class="py-2">
+                            <a class="flex items-center hover:text-gray-300" href="#">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                Matrículas
+                            </a>
+                        </li>
+                        <li class="py-2">
+                            <a class="flex items-center hover:text-gray-300" href="#">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                Frequência Escolar
+                            </a>
+                        </li>
+                        <li class="py-2">
+                            <a class="flex items-center hover:text-gray-300" href="#">
+                                <i class="fas fa-file-alt mr-2"></i>
+                                Evasão Escolar
+                            </a>
+                        </li>
+                    </ul>
+                    <li class="py-2">
+                        <a class="flex items-center hover:text-gray-300" href="{{ url_for('admin') }}"
+                            id="toggleRelatorios">
+                            <i class="fa fa-sign-out"></i>
+                            Sair
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <header class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-blue-700 dark:text-blue-300">Sistema de Gestão</h1>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600 dark:text-gray-300">admin</span>
+                    <i class="fas fa-power-off text-red-600"></i>
+                </div>
+            </header>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded shadow">
+                <h2 class="text-xl font-semibold mb-4">Relatório de Frequência Escolar</h2>
+                <div class="border-b mb-4">
+                    <ul class="flex">
+
+                    </ul>
+                </div>
+                <button onclick="listarAlunos()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Listar Alunos</button>
+                <div class="mt-6">
+                    <table class="w-full border-collapse border border-gray-300 dark:border-gray-600">
+                        <thead>
+                            <tr class="bg-gray-200 dark:bg-gray-700">
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2" style="width: 30%;">Nome do Aluno(a)</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2" style="width: 14%;">Matrícula</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2" style="width: 14%;">Turma</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2" style="width: 14%;">Unidade</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2" style="width: 14%;">Presenças</th>
+                                <th class="border border-gray-300 dark:border-gray-600 px-4 py-2" style="width: 14%;">Faltas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-nomes">
+                            {% for ponto in pontos %}
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[0] }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[1] }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[2] }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[3] }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[4] }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[5] }}</td>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">{{ ponto[6] }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% for aluno in alunos %}
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2" colspan="7">{{ aluno
+                                    }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center py-4">Nenhum resultado foi Encontrado.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                    <div class="pagination">
+                        <button onclick="prevPage()">Anterior</button>
+                        <span id="page-number">Página 1</span>
+                        <button onclick="nextPage()">Próxima</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 M-Tech. Todos os direitos reservados ao Desenvolvedor.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Seleciona o item de "Relatórios" e os itens adicionais
+        const toggleRelatorios = document.getElementById('toggleRelatorios');
+        const relatorioItems = document.getElementById('relatorioItems');
+
+        // Adiciona o evento de clique
+        toggleRelatorios.addEventListener('click', () => {
+            // Alterna a visibilidade dos itens
+            relatorioItems.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

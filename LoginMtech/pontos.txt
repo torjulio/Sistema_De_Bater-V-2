@@ -1,0 +1,47 @@
+Victor Júlio Lourenço Carvalho,entrada,2024-09-29 02:01:54
+Victor Júlio Lourenço Carvalho,saida,2024-09-29 02:02:35
+Victor Júlio Lourenço Carvalho,entrada,2024-09-29 10:53:00
+Victor Júlio Lourenço Carvalho,entrada,2024-09-29 10:53:04
+Victor Júlio Lourenço Carvalho,saida,2024-09-29 11:43:51
+Victor Júlio Lourenço Carvalho,entrada,2024-09-29 11:54:56
+Victor Júlio Lourenço Carvalho,saida,2024-09-29 12:14:31
+Carlos de Moura ,entrada,2024-09-29 15:36:06
+Carlos de Moura ,saida,2024-09-29 15:36:23
+Neidiman Raposo Lima,entrada,2024-10-01 08:17:07
+Thiago Borba Nunes,entrada,2024-10-01 08:22:02
+Gustavo de Assis Machado Lobo,entrada,2024-10-01 08:22:59
+Cauã Gabriel Nobre Batista,entrada,2024-10-01 08:23:20
+David Luka Kulaif carvalho nascimento,entrada,2024-10-01 08:26:16
+Misael Chaves de Matos,entrada,2024-10-01 08:31:05
+Cauã Gabriel Nobre Batista,saida,2024-10-01 10:01:18
+Misael Chaves de Matos,saida,2024-10-01 10:02:30
+Gustavo de Assis Machado Lobo,saida,2024-10-01 10:02:45
+Thiago Borba Nunes,saida,2024-10-01 10:02:56
+David Luka Kulaif carvalho nascimento,saida,2024-10-01 10:06:23
+Ryan Cabral de Almeida,saida,2024-10-01 10:08:47
+Victor Emanoel Marques dos Santos,entrada,2024-10-01 10:19:55
+ana katarina de melo sampaio,entrada,2024-10-01 10:21:00
+Ana Clara Araujo Leão ,entrada,2024-10-01 10:21:30
+Ágatha Yasmin dos Santos de Andrade ,entrada,2024-10-01 10:23:00
+derick  muller melo de cavalho,entrada,2024-10-01 10:24:24
+Ana Clara Tavares,entrada,2024-10-01 10:24:32
+kristian mesquita silva,entrada,2024-10-01 10:25:47
+Ana Clara Tavares,saida,2024-10-01 12:03:39
+Victor Emanoel Marques dos Santos,saida,2024-10-01 12:03:51
+kristian mesquita silva,saida,2024-10-01 12:04:26
+Ágatha Yasmin dos Santos de Andrade ,saida,2024-10-01 12:05:20
+Ana Clara Araujo Leão ,saida,2024-10-01 12:05:58
+Misael Chaves de Matos,entrada,2024-10-02 08:15:05
+Ryan Cabral de Almeida,entrada,2024-10-02 08:20:55
+tete,entrada,2024-11-05 21:41:19
+vu,entrada,2024-11-05 22:06:28
+testete,entrada,2024-11-05 22:27:07
+testete,saida,2024-11-18 22:05:35
+testete,entrada,2024-11-18 22:21:59
+testete,saida,2024-11-19 10:30:25
+testete,entrada,2024-11-19 11:45:22
+testete,saida,2024-11-20 18:38:30
+tete,saida,2024-12-16 15:13:49
+vu,saida,2024-12-16 15:21:13
+vu,entrada,2024-12-16 15:21:37
+Victor Jï¿½lio Lourenï¿½o Carvalho,entrada,2024-12-16 15:22:42

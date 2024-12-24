@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle</title>
+    <link rel="stylesheet" href="../static/teste.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </link>
+    <link rel="icon" href="../static/images/MTECH.png" type="image/x-icon">
+    <style>
+        body {
+            background-color: #f7fafc;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #374151;
+            /* Melhor contraste para o texto */
+        }
+
+        .header-logo {
+            height: 4rem;
+            /* Define uma altura fixa para a imagem */
+            width: auto;
+            /* Mantém a proporção da imagem */
+            object-fit: contain;
+            /* Ajusta o conteúdo da imagem se necessário */
+
+        }
+
+        header {
+            background-color: #673f85;
+            color: white;
+            padding: 0.90rem 1rem;
+            /* Mantém o padding reduzido */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.315);
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* Centraliza verticalmente a logo e o menu */
+        }
+
+
+        header nav ul {
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            /* Remove margens extras */
+            padding: 0;
+            /* Remove espaçamento interno desnecessário */
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        header nav a:hover {
+            color: #93c5fd;
+        }
+
+
+        main {
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: white;
+            padding: 2rem;
+            /* Aumentado para mais conforto visual */
+            border-radius: 0.75rem;
+            /* Bordas levemente mais arredondadas */
+            box-shadow: 0 4px 8px rgba(71, 36, 153, 0.74);
+            /* Sombra mais visível */
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+            /* Melhor contraste */
+        }
+
+        table {
+            width: 100%;
+            background-color: white;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 0.75rem 1.25rem;
+            /* Mais espaçamento interno */
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            text-align: left;
+            font-weight: bold;
+            color: #4b5563;
+            /* Leve diferença para destacar cabeçalhos */
+        }
+
+        tbody tr:hover {
+            background-color: #f1f5f9;
+            /* Realça a linha ao passar o mouse */
+        }
+
+        button {
+            background-color: #ef4444;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            /* Botões um pouco maiores */
+            border-radius: 0.3rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #dc2626;
+            /* Transição mais suave */
+        }
+
+
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            /* Ocupa toda a altura da janela */
+            display: flex;
+            flex-direction: column;
+            /* Organiza header, main e footer verticalmente */
+            margin: 0;
+        }
+
+        .content {
+            flex: 1;
+            /* Faz o conteúdo ocupar o espaço restante */
+        }
+
+        footer {
+            background-color: #2563eb;
+            color: white;
+            padding: -0.05rem 0.50rem;
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: auto;
+            line-height: 1.4;
+        }
+
+        .status-entrada {
+            background-color: #00ff00;
+            /* Verde radioativo */
+            color: #050505;
+            /* Texto branco para contraste */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 0.25rem;
+            /* Deixa levemente arredondado */
+            padding: 0.3rem 0.6rem;
+            /* Ajusta o padding para reduzir o tamanho */
+            /* padding superior/inferior 0.3rem e lateral 0.6rem */
+        }
+
+        .status-saida {
+            background-color: #ff0000;
+            /* Vermelho vivo */
+            color: #ffffff;
+            /* Texto branco para contraste */
+            font-weight: bold;
+            text-align: center;
+            border-radius: 0.25rem;
+            /* Deixa levemente arredondado */
+            padding: 0.1rem 0.6rem;
+            /* Ajusta o padding para reduzir o tamanho */
+            /* padding superior/inferior 0.3rem e lateral 0.6rem */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="content">
+        <header class="bg-blue-600 text-white p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <img src="../static/images/Logo.png" alt="Logo" class="header-logo">
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="hover:underline">Início</a></li>
+                        <li><a href="{{ url_for('index') }}" class="hover:underline">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+
+        <main class="container mx-auto mt-8 px-4">
+            <section class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold mb-4">Lista de Alunos</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr>
+                                <th class="py-2 px-4 border-b">Nome</th>
+                                <th class="py-2 px-4 border-b">Situação</th>
+                                <th class="py-2 px-4 border-b">Horario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for nome, acao, hora in pontos %}
+                            <tr>
+                                <td class="py-2 px-4 border-b">{{ nome }}</td>
+                                <td class="py-2 px-4 border-b {% if acao == 'entrada' %}status-entrada{% elif acao == 'saida' %}status-saida{% endif %}">
+                                    {{ acao }}
+                                </td>
+                                <td class="py-2 px-4 border-b">{{ hora }}</td> <!-- Certifique-se de que 'hora' contém data e hora -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 M-Tech . Todos os direitos reservados ao Desenvolvedor.</p>
+        </div>
+    </footer>
+</body>
+
+
+</body>
+
+</html>

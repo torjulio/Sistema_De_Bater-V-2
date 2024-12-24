@@ -1,0 +1,29 @@
+@media (max-width: 480px) {
+    body {
+      padding: 0 10px;
+    }
+  
+    .container {
+      width: 100%;
+      min-height: 300px;
+      border-radius: 10px;
+    }
+  
+    .logo img {
+      height: 80px;
+    }
+  
+    .footer img {
+      margin-top: 5px;
+    }
+  }
+body{
+    background-color: black;
+}
+
+
+
+
+
+
+
